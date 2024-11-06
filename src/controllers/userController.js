@@ -97,7 +97,7 @@ const getUserById = async (req, res) => {
                 message: "user is not existing"
             })
         }
-
+        
         res.status(200).json({
             status: true,
             responseObject: user

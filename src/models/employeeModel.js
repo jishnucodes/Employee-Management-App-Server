@@ -16,7 +16,7 @@ const employeeSchema = new Schema({
         required: true,
     },
     name: {
-        type: String,
+        type: String,   //fname, lname
         required: true
     },
     dateOfBirth: {
