@@ -69,7 +69,7 @@ const signin = async (req, res) => {
         res.cookie(enumObj.auth_token, token, {
             httpOnly: false,
             secure: process.env.NODE_ENV === enumObj.env_production,
-            maxAge: 24 * 60 * 60 * 100,
+            maxAge: 24 * 60 * 60 * 1000,
 
         })
         userExist.password = undefined;
