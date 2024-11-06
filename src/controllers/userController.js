@@ -67,7 +67,7 @@ const signin = async (req, res) => {
         const token = generateAccessToken(userExist);
 
         res.cookie(enumObj.auth_token, token, {
-            httpOnly: false,
+            httpOnly: true,
             secure: process.env.NODE_ENV === enumObj.env_production,
             maxAge: 24 * 60 * 60 * 1000,
 
