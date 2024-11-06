@@ -9,7 +9,10 @@ import { seedUsers } from './src/utils/utility.js';
 const app = express();
 
 connectToDB()
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3001', // Specify the frontend domain
+  credentials: true                          // Allow credentials (cookies) to be sent
+}));
 app.use(express.json());
 app.use(cookieParser());
 
