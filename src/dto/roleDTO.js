@@ -1,3 +1,5 @@
+import { buildRoleTypeDTO } from "./roleTypeDTO.js";
+
 export const roleDTO = {
     id: '',
     roleName: '',
@@ -14,7 +16,7 @@ export const buildRoleDTO = (obj) => {
     const rDTO = {...roleDTO};
     rDTO.id = obj?._id;
     rDTO.roleName = obj?.roleName;
-    rDTO.roleType = obj?.roleType;
+    rDTO.roleType = obj?.roleType ? buildRoleTypeDTO(obj?.roleType) : null;
     rDTO.createdOn = obj?.createdOn;
     rDTO.modifiedOn = obj?.modifiedOn;
     rDTO.createdBy = obj?.createdBy;

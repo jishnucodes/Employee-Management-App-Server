@@ -1,6 +1,5 @@
 import mongoose from "mongoose"
 import 'dotenv/config'
-import { seedUsers } from "../utils/utility.js"
 
 export const connectToDB = async () => {
     try {

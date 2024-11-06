@@ -4,7 +4,6 @@ import 'dotenv/config';
 import cookieParser from 'cookie-parser';
 import { connectToDB } from './src/config/dbConfig.js';
 import router from './src/routes/indexRouter.js';
-import { seedUsers } from './src/utils/utility.js';
 
 const app = express();
 
