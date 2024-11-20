@@ -18,7 +18,7 @@ const signup = async (req, res) => {
         const hashedPassword = await passwordHashing(password);
         const createdBy = req.user ? req.user : 'admin';
         let userObj = {...userDTO};
-        userObj.id = '5';
+        userObj.id = '';
         userObj.username = username;
         userObj.email = email;
         userObj.password = hashedPassword;
