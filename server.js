@@ -11,7 +11,7 @@ connectToDB()
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  credentials: true, origin: 'http://localhost:3000',                        // Allow credentials (cookies) to be sent
+  credentials: true, origin: 'http://localhost:3000',                    
 }));
 
 const port = process.env.PORT || 3000;
