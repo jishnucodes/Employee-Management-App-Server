@@ -8,11 +8,11 @@ import router from './src/routes/indexRouter.js';
 const app = express();
 
 connectToDB()
+app.use(express.json());
+app.use(cookieParser());
 app.use(cors({
   credentials: true, origin: 'http://localhost:3000',                        // Allow credentials (cookies) to be sent
 }));
-app.use(express.json());
-app.use(cookieParser());
 
 const port = process.env.PORT || 3000;
 
