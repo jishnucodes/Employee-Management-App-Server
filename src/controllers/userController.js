@@ -1,3 +1,4 @@
+import { Role } from "../dbLayer/dbRoleLayer.js";
 import {User} from "../dbLayer/dbUserLayer.js";
 import { buildUserDTO, userDTO } from "../dto/userDTO.js";
 import { enumObj } from "../utils/enumObj.js";
@@ -112,9 +113,66 @@ const getUserById = async (req, res) => {
     }
 }
 
+const userInsertion = async (req, res) => {
+    try {
+        const {username, email, password, role} = req.body;
+
+        const userExist = await User.findOneUser(email);
+        console.log("hitting")
+        if (userExist) {
+            return res.status(400).json({
+                status: false,
+                message: "user already exist."
+            })
+        }
+        console.log("user exist on insertion", userExist)
+        const hashedPassword = await passwordHashing(password);
+        console.log("req.user = ", req.user)
+        const createdBy = req.user ? req.user.id : 'admin';
+
+        const existingRole = await Role.findOneRoleById(role);
+        console.log("existing role", role)
+        if (!existingRole) {
+            console.log("role is not existing")
+            return res.status(400).json({
+                status: false,
+                message: "role is not existing"
+            })
+        }
+        let userObj = {...userDTO};
+        userObj.id = '';
+        userObj.username = username;
+        userObj.email = email;
+        userObj.role = existingRole ? existingRole.id : '';
+        userObj.password = hashedPassword;
+        userObj.createdBy = createdBy;
+        userObj.modifiedBy = createdBy;
+
+        // const userDTOObj = buildUserDTO(userObj);
+        const newUser = await User.createNewUser(userObj);
+        if (!newUser) {
+            return res.status(400).json({
+                status: false,
+                message: "user creation failed",
+            })
+        }
+        res.status(201).json({
+            status: true,
+            responseObject: newUser,
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            status: false,
+            message: "Something went wrong. please try again"
+        })
+    }
+}
+
 
 export {
     signup, 
     signin,
-    getUserById
+    getUserById,
+    userInsertion
 }

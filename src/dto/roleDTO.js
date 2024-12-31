@@ -24,3 +24,7 @@ export const buildRoleDTO = (obj) => {
 
     return rDTO;
 }
+
+export const buildRoleListDTO = (roleList) => {
+    return roleList.map((role) => buildRoleDTO(role));
+}

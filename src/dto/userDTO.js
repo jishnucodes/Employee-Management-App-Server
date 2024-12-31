@@ -14,7 +14,7 @@ export const userDTO = {
 }
 
 export const buildUserDTO = (obj) => {
-    
+    console.log("buildUserDTO", obj);
     const userDTOObj = {...userDTO};
     userDTOObj.id = obj?._id;
     userDTOObj.username = obj?.username;
@@ -27,5 +27,7 @@ export const buildUserDTO = (obj) => {
     userDTOObj.createdBy = obj?.createdBy;
     userDTOObj.modifiedBy = obj?.modifiedBy;
 
+
     return userDTOObj;
 }
+
