@@ -115,7 +115,7 @@ const getUserById = async (req, res) => {
 
 const userInsertion = async (req, res) => {
     try {
-        const {username, email, password, role} = req.body;
+        const {username, email, password, role, active} = req.body;
 
         const userExist = await User.findOneUser(email);
         console.log("hitting")
@@ -145,6 +145,7 @@ const userInsertion = async (req, res) => {
         userObj.email = email;
         userObj.role = existingRole ? existingRole.id : '';
         userObj.password = hashedPassword;
+        userObj.active = active;
         userObj.createdBy = createdBy;
         userObj.modifiedBy = createdBy;
 
