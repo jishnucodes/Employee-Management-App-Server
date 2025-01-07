@@ -35,10 +35,10 @@ const leaveTypeSchema = new Schema({
     }
 });
 
-leaveTypeSchema.pre('save', function (next) {
-    this.id = this._id.toString()
-    next()
-});
+// leaveTypeSchema.pre('save', function (next) {
+//     this.id = this._id.toString()
+//     next()
+// });
 
 const LeaveType = mongoose.model("LeaveType", leaveTypeSchema);
 

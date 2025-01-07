@@ -31,3 +31,7 @@ export const buildUserDTO = (obj) => {
     return userDTOObj;
 }
 
+
+export const buildUserListDTO = (userList) => {
+    return userList.map((obj) => buildUserDTO(obj));
+}

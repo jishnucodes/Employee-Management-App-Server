@@ -1,4 +1,4 @@
-import { buildUserDTO } from "../../dto/userDTO.js";
+import { buildUserDTO, buildUserListDTO } from "../../dto/userDTO.js";
 import User from "../../models/userModel.js";
 
 const findOneUser_Mongo = async (email) => {
@@ -40,8 +40,20 @@ const findUserById_Mongo = async (userId) => {
     }
 }
 
+const findAllUsers_Mongo = async () => {
+    try {
+        const users = await User.find({}).populate("role").exec();
+        console.log("users", users)
+        const response = buildUserListDTO(users)
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export {
     findOneUser_Mongo,
     createNewUser_Mongo,
-    findUserById_Mongo
+    findUserById_Mongo,
+    findAllUsers_Mongo
 }

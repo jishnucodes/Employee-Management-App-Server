@@ -23,6 +23,7 @@ const signup = async (req, res) => {
         userObj.username = username;
         userObj.email = email;
         userObj.password = hashedPassword;
+        userObj.role = userExist ? userExist.id : ''
         userObj.createdBy = createdBy;
         userObj.modifiedBy = createdBy;
 
@@ -170,10 +171,35 @@ const userInsertion = async (req, res) => {
     }
 }
 
+const userList = async (req, res) => {
+    try {
+        const users = await User.findAllUsers();
+        if (!users) {
+            return res.status(400).json({
+                status: false,
+                message: "no user found"
+            })
+        }
+        users.forEach(user => {
+            user.password = undefined;
+        })
+        res.status(200).json({
+            status: true,
+            responseObject: users
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            status: false,
+            error: "Something went wrong. please try again"
+        })
+    }
+}
 
 export {
     signup, 
     signin,
     getUserById,
-    userInsertion
+    userInsertion,
+    userList
 }
