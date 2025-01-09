@@ -40,6 +40,22 @@ const findUserById_Mongo = async (userId) => {
     }
 }
 
+const findByIdAndUpdateUser_Mongo = async (userId, updateObj) => {
+    console.log("updateObj", updateObj)
+    console.log("userId", userId)
+    try {
+        const user = await User.findByIdAndUpdate(userId, updateObj, { new: true }).populate("role").exec();
+        if (user) {
+            const response = buildUserDTO(user);
+            return response;
+        }else{
+            return;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const findAllUsers_Mongo = async () => {
     try {
         const users = await User.find({}).populate("role").exec();
@@ -51,9 +67,24 @@ const findAllUsers_Mongo = async () => {
     }
 }
 
+const findByIdAndDeleteUser_Mongo = async (userId) => {       
+    try {
+        const user = await User.findByIdAndDelete({_id: userId}).exec();
+        if (user) {
+            return true;
+            }else{
+                return false;
+            }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export {
     findOneUser_Mongo,
     createNewUser_Mongo,
     findUserById_Mongo,
-    findAllUsers_Mongo
+    findAllUsers_Mongo,
+    findByIdAndUpdateUser_Mongo,
+    findByIdAndDeleteUser_Mongo
 }

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getUserById, signin, signup, userInsertion, userList } from '../controllers/userController.js';
+import { deleteUser, getUserById, signin, signup, userInsertion, userList, userUpdate } from '../controllers/userController.js';
 import { checkAndCreateDefaultRoles } from '../middleware/defaultRole.js';
 import authenticateToken from '../middleware/authenticateToken.js';
 
@@ -10,6 +10,8 @@ userRouter.post("/signin", signin);
 userRouter.post("/signup", checkAndCreateDefaultRoles, signup);
 userRouter.get("/userList", authenticateToken, userList)   
 userRouter.get("/:id",authenticateToken, getUserById)
-userRouter.post("/insertUser", authenticateToken, userInsertion)
+userRouter.put("/updateUser/:id", authenticateToken, userUpdate)
+userRouter.post("/insertUser", authenticateToken, userInsertion);
+userRouter.delete("/deleteUser/:id", authenticateToken, deleteUser);
 
 export default userRouter;
