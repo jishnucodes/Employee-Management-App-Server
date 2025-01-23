@@ -13,7 +13,7 @@ const findOneUser_Mongo = async (email) => {
 
 const createNewUser_Mongo = async (userObj) => {
     console.log("second hitting")
-    let user = new User(userObj)
+    let user = new User(userObj) 
     console.log("user", user)
     await user.save()
 
