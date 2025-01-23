@@ -13,6 +13,7 @@ export const buildRoleTypeDTO = (obj) => {
     rTDTO.isAdmin = obj?.isAdmin;
     rTDTO.createdOn = obj?.createdOn;
     rTDTO.modifiedOn = obj?.modifiedOn;
+    console.log("buildRoleTypeDTO", rTDTO);
 
     return rTDTO;
 }

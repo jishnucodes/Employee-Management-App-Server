@@ -6,6 +6,9 @@ export default function generateAccessToken(user) {
 };
 
 export const passwordHashing = async (password) => {
+   if (!password) {
+      return null;
+   }
    return await bcrypt.hash(password, 10);
 }
 
