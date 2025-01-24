@@ -2,8 +2,8 @@ import { buildRoleDTO } from "./roleDTO.js";
 
 export const departmentDTO = {
     id: '',
-    departmentname: '',
-    departmenthead: '',
+    departmentName: '',
+    departmentHead: '',
     description: '',
     active: true,
     createdOn: Date.now(),
@@ -16,8 +16,8 @@ export const buildDepartmentDTO = (obj) => {
     
     const departmentDTOObj = {...departmentDTO};
     departmentDTOObj.id = obj?._id;
-    departmentDTOObj.departmentname = obj?.departmentname;
-    departmentDTOObj.departmenthead = obj?.departmenthead;
+    departmentDTOObj.departmentName = obj?.departmentName;
+    departmentDTOObj.departmentHead = obj?.departmentHead;
     departmentDTOObj.description = obj?.description;
     departmentDTOObj.active = obj?.active;
     departmentDTOObj.createdOn = obj?.createdOn;
@@ -26,4 +26,8 @@ export const buildDepartmentDTO = (obj) => {
     departmentDTOObj.modifiedBy = obj?.modifiedBy;
 
     return departmentDTOObj;
+}
+
+export const buildDepartmentListDTO = (departmentList) => {
+    return departmentList.map((obj) => buildDepartmentDTO(obj));
 }

@@ -1,6 +1,6 @@
-import { createDepartment_Mongo, deleteDepartmentById_Mongo, listDepartment_Mongo, updateDepartmentById_Mongo } from "../queries/mongoDBQueries/departmentQueries";
+import { createDepartment_Mongo, deleteDepartmentById_Mongo, listDepartment_Mongo, updateDepartmentById_Mongo } from "../queries/mongoDBQueries/departmentQueries.js";
 
-export const department = {
+export const Department = {
     createDepartment:async(userObj)=>{
     
     return await createDepartment_Mongo(userObj);
